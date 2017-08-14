@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    用户名: <input type="text" id="user_id"><br/>
+    密码: <input type="password" id="pass_id"><br/>
+    <input type="button" value="登陆" id="login_btn">
+    <input type="button" value="注册" id="reg_btn"><br/>
+</body>
+</html>
+<script src="ajax.js"></script>
+<script>
+
+    function $(id) {
+        return document.getElementById(id);
+    };
+
+    window.onload = function () {
+
+        var $user = $('user_id');
+        var $pass = $('pass_id');
+        var $reg = $('reg_btn');
+        var $login = $('login_btn');
+
+        $login.onclick = function () {
+            var data = {
+                act: 'login',
+                user: $user.value,
+                pass: $pass.value
+            };
+
+            ajax({
+                url: '/user',
+                data: data,
+                type: 'post',
+                success: function (data) {
+                    var data = eval('('+ data+')');
+                    if (data.ok) {
+                        alert(data.msg);
+                    } else {
+                        alert(data.msg);
+                    };
+
+                },
+                error: function () {
+
+                }
+            });
+        };
+
+        $reg.onclick = function () {
+            var data = {
+                act: 'reg',
+                user: $user.value,
+                pass: $pass.value
+            };
+
+            ajax({
+                url: '/user',
+                data: data,
+                type: 'post',
+                success: function (data) {
+                    var data = eval('('+ data+')');
+                    if (data.ok) {
+                        alert(data.msg);
+                    } else {
+                        alert(data.msg);
+                    };
+                },
+                error: function () {
+
+                }
+            });
+        };
+
+    };
+
+
+</script>
