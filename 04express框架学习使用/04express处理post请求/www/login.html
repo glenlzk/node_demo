@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    用户名：<input type="text" id="user"><br/>
+    密码：<input type="password" id="pass"><br/>
+    <input type="button" value="登陆" id="btn"><br/>
+</body>
+</html>
+<script src="ajax.js"></script>
+<script>
+    function $(id) {
+        return document.getElementById(id);
+    };
+    window.onload = function () {
+        $('btn').onclick = function () {
+            ajax({
+                url:'/',
+                type: 'post',
+                data: {
+                    user: $('user').value,
+                    pass: $('pass').value
+                },
+                success: function (str) {
+
+                },
+                error: function () {
+
+                }
+            });
+        };
+    };
+
+
+</script>
